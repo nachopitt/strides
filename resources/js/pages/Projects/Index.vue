@@ -29,11 +29,18 @@ defineProps({
                     <ul class="space-y-4">
                         <li v-for="project in projects" :key="project.id" class="flex justify-between items-center">
                             <span>{{ project.name }}</span>
-                            <Button variant="outline" size="sm" as-child>
-                                <Link :href="route('projects.edit', project.id)">
-                                    Edit
-                                </Link>
-                            </Button>
+                            <div class="flex items-center space-x-2">
+                                <Button variant="outline" size="sm" as-child>
+                                    <Link :href="route('projects.edit', project.id)">
+                                        Edit
+                                    </Link>
+                                </Button>
+                                <Button variant="outline" size="sm" as-child>
+                                    <Link :href="route('projects.show', project.id)">
+                                        Show
+                                    </Link>
+                                </Button>
+                            </div>
                         </li>
                     </ul>
                     <p v-if="!projects.length" class="text-muted-foreground">
