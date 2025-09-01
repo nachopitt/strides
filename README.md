@@ -6,17 +6,24 @@ This document outlines the steps to set up the Strides project for local develop
 
 Before you begin, install the required system-level software.
 
-*   **PHP 8.4:**
+*   **PHP 8.4, Composer and Laravel installer:**
     ```bash
     /bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.4)"
+    ```
+*   **Laravel installer only (PHP and Composer already installed):**
+    ```bash
+    composer global require laravel/installer
     ```
 *   **MariaDB Server & Client:**
     ```bash
     sudo apt update
-    sudo apt install mariadb-server mariadb-client-core-10.6
+    sudo apt install mariadb-server mariadb-client
     ```
 *   **Node.js & npm:** (Installation methods vary, e.g., using `nvm` or `apt`)
-*   **Composer:** (Typically installed after PHP)
+    ```
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    nvm install node
+    ```
 
 
 ## 2. Initial Project Setup
@@ -45,6 +52,9 @@ php artisan key:generate
 
 # Install JavaScript dependencies
 npm install
+
+# Creating a production-ready version of the application
+npm run build
 ```
 
 ## 5. Database Setup
@@ -111,6 +121,10 @@ You need two terminal sessions for this.
 *   **In terminal 2 (Laravel Backend Server):**
     ```bash
     php artisan serve
+    ```
+*   **In a single terminal (Vite Frontend Server + Laravel Backend Server):**
+    ```bash
+    composer run dev
     ```
 
 Your application should now be running, typically at `http://127.0.0.1:8000`.
