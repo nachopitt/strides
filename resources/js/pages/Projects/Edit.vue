@@ -19,6 +19,12 @@ const form = useForm({
 const submit = () => {
     form.put(route('projects.update', props.project.id));
 };
+
+const destroy = () => {
+    if (confirm('Are you sure you want to delete this project?')) {
+        form.delete(route('projects.destroy', props.project.id));
+    }
+};
 </script>
 
 <template>
@@ -40,7 +46,10 @@ const submit = () => {
                                 <Label for="description">Description</Label>
                                 <Input id="description" v-model="form.description" type="text" />
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-between">
+                                <Button variant="destructive" type="button" @click="destroy">
+                                    Delete Project
+                                </Button>
                                 <Button type="submit" :disabled="form.processing">
                                     Update Project
                                 </Button>
