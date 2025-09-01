@@ -24,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Projects/Create');
     }
 
     /**
@@ -32,7 +32,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $request->user()->projects()->create($validated);
+
+        return Redirect::route('projects.index');
     }
 
     /**
